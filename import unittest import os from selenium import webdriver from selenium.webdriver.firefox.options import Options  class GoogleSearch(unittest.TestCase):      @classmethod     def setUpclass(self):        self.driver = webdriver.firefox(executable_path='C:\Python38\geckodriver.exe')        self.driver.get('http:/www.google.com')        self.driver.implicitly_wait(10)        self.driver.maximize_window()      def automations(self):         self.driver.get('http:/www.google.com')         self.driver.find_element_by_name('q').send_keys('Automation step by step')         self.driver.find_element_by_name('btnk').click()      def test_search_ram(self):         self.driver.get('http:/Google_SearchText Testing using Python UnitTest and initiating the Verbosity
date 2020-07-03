@@ -1,0 +1,33 @@
+import unittest
+#import os
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+
+class GoogleSearch(unittest.TestCase):
+
+    @classmethod
+    def setUpclass(self):
+       self.driver = webdriver.firefox(executable_path='C:\Python38\geckodriver.exe')
+       self.driver.get('http://www.google.com')
+       self.driver.implicitly_wait(10)
+       self.driver.maximize_window()
+
+    def automations(self):
+        self.driver.get('http://www.google.com')
+        self.driver.find_element_by_name('q').send_keys('Automation step by step')
+        self.driver.find_element_by_name('btnk').click()
+
+    def test_search_ram(self):
+        self.driver.get('http://www.google.com')
+        self.driver.find_element_by_name('q').send_keys('Random')
+        self.driver.find_element_by_name('btnk').click()
+
+    @classmethod
+    def tearDownclass(cls):
+        cls.driver.close()
+        cls.driver.quit()
+        print('Test Completed')
+
+
+    if __name__ == '__main__':
+         unittest.main(verbosity=2)
